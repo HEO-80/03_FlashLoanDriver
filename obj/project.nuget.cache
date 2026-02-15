@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SQ2nA39W7VA=",
+  "dgSpecHash": "fWCz8BzH1AI=",
   "success": true,
   "projectFilePath": "C:\\Cursos\\BlockChain\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
   "expectedPackageFiles": [
@@ -31,7 +31,7 @@
     {
       "code": "NU1903",
       "level": "Warning",
-      "message": "El paquete \"Newtonsoft.Json\" 11.0.2 tiene una vulnerabilidad de gravedad alta conocida, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
+      "message": "Package 'Newtonsoft.Json' 11.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
       "projectPath": "C:\\Cursos\\BlockChain\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
       "warningLevel": 1,
       "filePath": "C:\\Cursos\\BlockChain\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
