@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fWCz8BzH1AI=",
+  "dgSpecHash": "Jhn2rSOesy0=",
   "success": true,
-  "projectFilePath": "C:\\Cursos\\BlockChain\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
+  "projectFilePath": "C:\\Cursos\\BlockChain\\Nivel1\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\adraffy.ensnormalize\\0.3.1\\adraffy.ensnormalize.0.3.1.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\bouncycastle.cryptography\\2.5.1\\bouncycastle.cryptography.2.5.1.nupkg.sha512",
@@ -32,9 +32,9 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "Package 'Newtonsoft.Json' 11.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
-      "projectPath": "C:\\Cursos\\BlockChain\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
+      "projectPath": "C:\\Cursos\\BlockChain\\Nivel1\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Cursos\\BlockChain\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
+      "filePath": "C:\\Cursos\\BlockChain\\Nivel1\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
       "libraryId": "Newtonsoft.Json",
       "targetGraphs": [
         "net10.0"

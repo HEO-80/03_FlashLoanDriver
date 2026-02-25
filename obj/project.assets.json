@@ -818,11 +818,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Cursos\\BlockChain\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
+      "projectUniqueName": "C:\\Cursos\\BlockChain\\Nivel1\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
       "projectName": "03_FlashLoanDriver",
-      "projectPath": "C:\\Cursos\\BlockChain\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
+      "projectPath": "C:\\Cursos\\BlockChain\\Nivel1\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\03_FlashLoanDriver.csproj",
       "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-      "outputPath": "C:\\Cursos\\BlockChain\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\obj\\",
+      "outputPath": "C:\\Cursos\\BlockChain\\Nivel1\\Etapa3\\Flash_LoanDriver\\03_FlashLoanDriver\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
