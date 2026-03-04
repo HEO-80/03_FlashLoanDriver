@@ -1,68 +1,229 @@
-# 🚀 Flash Loan Driver - Iniciador de Transacciones (C#)
+<div align="center">
 
-Este repositorio contiene una aplicación de consola desarrollada en C# (.NET) cuya función principal es establecer una conexión con un nodo blockchain local, autenticar una cuenta criptográfica y preparar la ejecución de un contrato inteligente previamente desplegado.
+# 🚀 Flash Loan Driver — Transaction Initiator
 
-## 🛠️ Especificaciones Técnicas
+<img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white"/>
+<img src="https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white"/>
+<img src="https://img.shields.io/badge/Nethereum-3C3C3D?style=for-the-badge&logo=ethereum&logoColor=white"/>
+<img src="https://img.shields.io/badge/Anvil-FFCB47?style=for-the-badge&logo=ethereum&logoColor=black"/>
+<img src="https://img.shields.io/badge/EVM-3C3C3D?style=for-the-badge&logo=ethereum&logoColor=white"/>
 
-El programa utiliza la biblioteca `Nethereum` para gestionar la comunicación asíncrona con la Máquina Virtual de Ethereum (EVM) en un entorno de desarrollo aislado.
+**C# console app that connects, authenticates and fires a deployed Flash Loan smart contract**
 
-El flujo de ejecución (`Program.cs`) se articula en las siguientes fases técnicas:
-1.  **Conexión RPC Local:** Define e inicializa un cliente Web3 apuntando al puerto estándar de un nodo de desarrollo local (`http://127.0.0.1:8545`, como Anvil o Ganache).
-2.  **Gestión de Identidad (Account):** Importa una clave privada predefinida (hardcodeada) correspondiente a la primera cuenta de prueba del nodo local. Esta cuenta se instancia a través de `Nethereum.Web3.Accounts` para permitir la firma criptográfica de transacciones.
-3.  **Vinculación del Smart Contract:** El script almacena la dirección hexadecimal (`contractAddress`) donde reside el bot en la red de pruebas. Simultáneamente, define una Interfaz Binaria de Aplicación (ABI) mínima en formato JSON (`contractAbi`) que mapea exclusivamente las funciones necesarias para la interacción (ej. la recepción de un parámetro `cantidad` de tipo `uint256`).
-4.  **Inicialización de Web3:** Agrupa la cuenta autenticada y el proveedor RPC en una única instancia de `Web3` lista para emitir llamadas de estado o transacciones de escritura hacia el contrato vinculado.
+*Local development driver — replaces manual forge commands with programmatic contract control.*
 
----
+**🌍 [English](#-english-version) · 🇪🇸 [Español](#-versión-en-español)**
 
-## 🏎️ Arquitectura Conceptual (Cómo entenderlo)
-
-Una vez comprendida la mecánica de conexión, podemos visualizar el rol de este script utilizando la siguiente analogía:
-
-* **El Conductor (Este script en C#):** Imagina que tienes un coche de alta tecnología aparcado en un circuito cerrado de pruebas. El coche por sí solo no hace nada. Este programa es el conductor que tiene la llave (la *Private Key*), sabe exactamente en qué plaza de aparcamiento está el coche (la *Contract Address*) y tiene el manual de instrucciones básico para saber qué botones pulsar en el salpicadero (el *ABI*). Su trabajo es subirse, meter la llave en el contacto y arrancar el motor para iniciar la prueba del préstamo rápido.
-
-## 🚀 Configuración y Ejecución
-
-Al ser un script de prueba para un entorno local, las variables de conexión se encuentran directamente en el código fuente.
-
-1.  Asegúrate de tener un nodo local (ej. Anvil) ejecutándose en el puerto `8545`.
-2.  Verifica que la variable `contractAddress` en `Program.cs` coincida con la dirección real que te devolvió la terminal al desplegar tu contrato en el nodo local.
-3.  Abre la terminal en la carpeta raíz de este proyecto y ejecuta:
-    ```bash
-    dotnet run
-    ```
-
----
----
-
-# 🚀 Flash Loan Driver - Transaction Initiator (C#) [EN]
-
-This repository contains a console application developed in C# (.NET) whose main function is to establish a connection with a local blockchain node, authenticate a cryptographic account, and prepare the execution of a previously deployed smart contract.
-
-## 🛠️ Technical Specifications
-
-The program utilizes the `Nethereum` library to manage asynchronous communication with the Ethereum Virtual Machine (EVM) in an isolated development environment.
-
-The execution flow (`Program.cs`) is articulated in the following technical phases:
-1.  **Local RPC Connection:** Defines and initializes a Web3 client pointing to the standard port of a local development node (`http://127.0.0.1:8545`, such as Anvil or Ganache).
-2.  **Identity Management (Account):** Imports a predefined (hardcoded) private key corresponding to the first test account of the local node. This account is instantiated through `Nethereum.Web3.Accounts` to enable cryptographic transaction signing.
-3.  **Smart Contract Binding:** The script stores the hexadecimal address (`contractAddress`) where the bot resides on the test network. Simultaneously, it defines a minimal Application Binary Interface (ABI) in JSON format (`contractAbi`) that maps exclusively the functions necessary for interaction (e.g., receiving an `amount` parameter of type `uint256`).
-4.  **Web3 Initialization:** Groups the authenticated account and the RPC provider into a single `Web3` instance ready to emit state calls or write transactions to the bound contract.
+</div>
 
 ---
 
-## 🏎️ Conceptual Architecture (How to understand it)
+## 🇪🇸 Versión en Español
 
-Once the connection mechanics are understood, we can visualize the role of this script using the following analogy:
+### 🏎️ La Analogía del Conductor
 
-* **The Driver (This C# script):** Imagine you have a high-tech car parked on a closed test track. The car by itself does nothing. This program is the driver who has the key (the *Private Key*), knows exactly which parking space the car is in (the *Contract Address*), and has the basic instruction manual to know which buttons to press on the dashboard (the *ABI*). Its job is to get in, put the key in the ignition, and start the engine to initiate the flash loan test.
+> Tienes un coche de alta tecnología aparcado en un circuito cerrado de pruebas. El coche por sí solo no hace nada. **Este programa es el conductor** — tiene la llave *(Private Key)*, sabe exactamente dónde está el coche *(Contract Address)* y tiene el manual de instrucciones para saber qué botones pulsar *(ABI)*. Su trabajo es subirse, meter la llave y arrancar el motor.
 
-## 🚀 Setup & Execution
+---
 
-Being a test script for a local environment, the connection variables are located directly in the source code.
+### ⚙️ Flujo de Ejecución
+```
+Program.cs
+    │
+    ├── 1. RPC Connection
+    │       └── Web3 client → http://127.0.0.1:8545 (Anvil / Ganache)
+    │
+    ├── 2. Identity (Account)
+    │       └── new Account(privateKey) → firma criptográfica habilitada
+    │
+    ├── 3. Smart Contract Binding
+    │       ├── contractAddress → dirección del contrato desplegado
+    │       └── contractAbi     → interfaz mínima JSON (funciones necesarias)
+    │
+    └── 4. Web3 Init
+            └── new Web3(account, rpcUrl) → listo para emitir transacciones
+```
 
-1.  Ensure you have a local node (e.g., Anvil) running on port `8545`.
-2.  Verify that the `contractAddress` variable in `Program.cs` matches the actual address returned by the terminal when you deployed your contract on the local node.
-3.  Open the terminal in the root folder of this project and run:
-    ```bash
-    dotnet run
-    ```
+---
+
+### 🛠️ Tech Stack
+
+| Capa | Tecnología |
+|:---|:---|
+| Lenguaje | C# / .NET 10.0 |
+| Web3 Integration | Nethereum |
+| Nodo local | Anvil (Foundry) / Ganache |
+| Red objetivo | EVM local (http://127.0.0.1:8545) |
+
+---
+
+### 🏗️ Estructura del Proyecto
+```
+03_FlashLoanDriver/
+├── Program.cs                  # Lógica principal del driver
+├── 03_FlashLoanDriver.csproj   # Proyecto .NET
+├── 03_FlashLoanDriver.sln      # Solución
+└── README.md
+```
+
+---
+
+### 🚀 Configuración y Ejecución
+
+**1. Levantar nodo local con Anvil**
+```bash
+anvil
+# Nodo disponible en http://127.0.0.1:8545
+# Copia la primera private key que muestra en pantalla
+```
+
+**2. Desplegar tu contrato en el nodo local**
+```bash
+forge create FlashLoanBot \
+  --constructor-args 0xTU_POOL_ADDRESS \
+  --rpc-url http://127.0.0.1:8545 \
+  --private-key TU_PRIVATE_KEY_DE_ANVIL
+```
+
+**3. Actualizar `Program.cs`** con la dirección del contrato desplegado
+```csharp
+string contractAddress = "0x_DIRECCION_QUE_TE_DIO_FORGE";
+```
+
+**4. Ejecutar el driver**
+```bash
+dotnet run
+```
+
+---
+
+### 🔗 Posición en el Ecosistema DeFi
+
+Este driver es la **fase 3** del ecosistema — el puente entre desarrollo local y producción:
+
+| Fase | Repo | Rol |
+|:---:|:---|:---|
+| 1 | `Flash_Loans` | ⚡ Contrato Solidity — lógica on-chain |
+| 2 | `09_ProfitBrain` | 🧠 Controlador off-chain — conecta con Mainnet |
+| 3 | `03_FlashLoanDriver` *(este)* | 🚀 Driver local — pruebas en entorno aislado |
+| 4 | `10_RealPriceBrain` | 📡 Radar — detecta oportunidades en tiempo real |
+| 5 | `13_SniperBot` | 🎯 Sniper — captura tokens nuevos en BSC |
+
+---
+
+### ⚖️ Disclaimer
+
+Este proyecto es **exclusivamente para fines educativos e investigación DeFi**. Diseñado para entornos locales de prueba — no conecta con Mainnet por defecto.
+
+---
+
+### 🧑‍💻 Autor
+
+**Héctor Oviedo** — Backend Developer & DeFi Researcher
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hectorob/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/HEO-80)
+
+---
+---
+
+## 🇬🇧 English Version
+
+### 🏎️ The Driver Analogy
+
+> You have a high-tech car parked on a closed test track. The car does nothing on its own. **This program is the driver** — it has the key *(Private Key)*, knows exactly where the car is parked *(Contract Address)*, and has the basic instruction manual to know which buttons to press *(ABI)*. Its job is to get in, put the key in the ignition, and start the engine.
+
+---
+
+### ⚙️ Execution Flow
+```
+Program.cs
+    │
+    ├── 1. RPC Connection
+    │       └── Web3 client → http://127.0.0.1:8545 (Anvil / Ganache)
+    │
+    ├── 2. Identity (Account)
+    │       └── new Account(privateKey) → cryptographic signing enabled
+    │
+    ├── 3. Smart Contract Binding
+    │       ├── contractAddress → deployed contract address
+    │       └── contractAbi     → minimal JSON interface (required functions)
+    │
+    └── 4. Web3 Init
+            └── new Web3(account, rpcUrl) → ready to emit transactions
+```
+
+---
+
+### 🛠️ Tech Stack
+
+| Layer | Technology |
+|:---|:---|
+| Language | C# / .NET 10.0 |
+| Web3 Integration | Nethereum |
+| Local Node | Anvil (Foundry) / Ganache |
+| Target Network | Local EVM (http://127.0.0.1:8545) |
+
+---
+
+### 🚀 Setup & Execution
+
+**1. Start local node with Anvil**
+```bash
+anvil
+# Node available at http://127.0.0.1:8545
+# Copy the first private key shown in the output
+```
+
+**2. Deploy your contract to the local node**
+```bash
+forge create FlashLoanBot \
+  --constructor-args 0xYOUR_POOL_ADDRESS \
+  --rpc-url http://127.0.0.1:8545 \
+  --private-key YOUR_ANVIL_PRIVATE_KEY
+```
+
+**3. Update `Program.cs`** with the deployed contract address
+```csharp
+string contractAddress = "0x_ADDRESS_RETURNED_BY_FORGE";
+```
+
+**4. Run the driver**
+```bash
+dotnet run
+```
+
+---
+
+### 🔗 Position in the DeFi Ecosystem
+
+This driver is **phase 3** — the bridge between local development and production:
+
+| Phase | Repo | Role |
+|:---:|:---|:---|
+| 1 | `Flash_Loans` | ⚡ Solidity contract — on-chain logic |
+| 2 | `09_ProfitBrain` | 🧠 Off-chain controller — connects to Mainnet |
+| 3 | `03_FlashLoanDriver` *(this)* | 🚀 Local driver — isolated environment testing |
+| 4 | `10_RealPriceBrain` | 📡 Radar — detects opportunities in real time |
+| 5 | `13_SniperBot` | 🎯 Sniper — captures new tokens on BSC |
+
+---
+
+### ⚖️ Disclaimer
+
+This project is for **educational and DeFi research purposes only**. Designed for local test environments — does not connect to Mainnet by default.
+
+---
+
+### 🧑‍💻 Author
+
+**Héctor Oviedo** — Backend Developer & DeFi Researcher
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/hectorob/)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/HEO-80)
+
+---
+
+<div align="center">
+  <sub>Built with ☕ and DeFi research · <strong>Héctor Oviedo</strong> · Zaragoza, España</sub>
+</div>
